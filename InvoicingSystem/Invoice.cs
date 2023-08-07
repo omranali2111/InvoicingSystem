@@ -102,13 +102,38 @@ namespace InvoicingSystem
             }
             return loadedInvoices;
         }
+        public void PrintInvoice()
+        {
+            ShopSetting shopSetting = new ShopSetting();
+            Console.WriteLine($"Shop Name: {shopSetting.ShopName}");
+            Console.WriteLine($"Invoice Header: {shopSetting.InvoiceHeader}");
+            Console.WriteLine($"Telephone: {shopSetting.Telephone}");
+            Console.WriteLine($"Fax: {shopSetting.Fax}");
+            Console.WriteLine($"Email: {shopSetting.Email}");
+            Console.WriteLine($"Website: {shopSetting.Website}");
+            Console.WriteLine($"Invoice Number: {InvoiceNumber}");
+            Console.WriteLine($"Customer Name: {CustomerFullName}");
+            Console.WriteLine($"Phone Number: {PhoneNumber}");
+            Console.WriteLine($"Invoice Date: {InvoiceDate.ToString("yyyy-MM-dd HH:mm:ss")}");
+            Console.WriteLine("Items:");
+
+            foreach (var item in Items)
+            {
+                Console.WriteLine($"  Item ID: {item.ItemId}");
+                Console.WriteLine($"  Item Name: {item.ItemName}");
+                Console.WriteLine($"  Unit Price: {item.Price:C}");
+                Console.WriteLine($"  Quantity: {item.Quantity}");
+                Console.WriteLine($"  Total Price: {item.Price * item.Quantity:C}");
+                Console.WriteLine();
+            }
+
+            Console.WriteLine($"Total Amount: {TotalAmount:C}");
+            Console.WriteLine($"Paid Amount: {PaidAmount:C}");
+            Console.WriteLine($"Balance: {Balance:C}");
+        }
     }
 
 
 
-
-
-
-
 }
-}
+

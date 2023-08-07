@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InvoicingSystem
 {
-    internal class ShopItem
+    public class ShopItem
     {
 
         public string ItemName { get; set; }

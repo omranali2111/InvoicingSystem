@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InvoicingSystem
 {
-    internal class shopSetting
+    internal class ShopSetting
     {
         public string ShopName { get; set; }
         public string InvoiceHeader { get; private set; }
@@ -35,17 +35,17 @@ namespace InvoicingSystem
             File.WriteAllText("ShopSettings.json", json);
         }
 
-        public static shopSetting Load()
+        public static ShopSetting Load()
         {
             try
             {
                 string json = File.ReadAllText("ShopSettings.json");
-                return JsonSerializer.Deserialize<shopSetting>(json);
+                return JsonSerializer.Deserialize<ShopSetting>(json);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred while loading shop settings: {ex.Message}");
-                return new shopSetting();
+                return new ShopSetting();
             }
         }
     }
