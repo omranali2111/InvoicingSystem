@@ -19,6 +19,10 @@ namespace InvoicingSystem
             item.ItemId = nextItemId++;
 
         }
+        public ShopItem GetItemById(int itemId)
+        {
+            return shopInventory.FirstOrDefault(item => item.ItemId == itemId);
+        }
         public void SaveInventoryToFile(string filePath)
         {
             try

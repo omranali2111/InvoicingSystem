@@ -19,7 +19,8 @@ namespace InvoicingSystem
                 Console.WriteLine("Main Menu");
                 Console.WriteLine("1. Shop Settings");
                 Console.WriteLine("2. Manage Shop Items");
-                Console.WriteLine("3. Exit");
+                Console.WriteLine("3. Create New Invoice");
+                Console.WriteLine("4. Exit");
                 Console.Write("Select an option: ");
 
                 int choice;
@@ -34,6 +35,9 @@ namespace InvoicingSystem
                             ShowManageShopItemsMenu();
                             break;
                         case 3:
+                            CreateNewInvoice();
+                            break;
+                        case 4:
                             return; // Exit the program
                         default:
                             Console.WriteLine("Invalid choice. Please try again.");
@@ -48,8 +52,61 @@ namespace InvoicingSystem
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
             }
-        }
 
+        }
+        private static void CreateNewInvoice()
+        {
+            Console.WriteLine("Enter Customer Full Name: ");
+            string customerName = Console.ReadLine();
+
+            Console.WriteLine("Enter Phone Number: ");
+            string phoneNumber = Console.ReadLine();
+
+            Invoice newInvoice = new Invoice(customerName, phoneNumber);
+
+            while (true)
+            {
+                Console.WriteLine("Add Item to Invoice:");
+                Console.Write("Enter Item ID: ");
+                int itemId;
+                if (int.TryParse(Console.ReadLine(), out itemId))
+                {
+                    ShopItem itemToAdd = shopItemManager.GetItemById(itemId);
+                    if (itemToAdd != null)
+                    {
+                        Console.Write("Enter Quantity: ");
+                        int quantity;
+                        if (int.TryParse(Console.ReadLine(), out quantity) && quantity > 0)
+                        {
+                            newInvoice.AddItem(itemToAdd, quantity);
+                            Console.WriteLine("Item added to the invoice.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid quantity format. Item not added.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Item with ID {itemId} not found.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid ID format. Item not added.");
+                }
+
+                Console.Write("Add another item? (Y/N): ");
+                string addAnother = Console.ReadLine();
+                if (addAnother.ToUpper() != "Y")
+                {
+                    break;
+                }
+            }
+
+            Console.WriteLine("Invoice created and items added:");
+            newInvoice.PrintInvoice();
+        }
         private static void ShowShopSettingsMenu()
         {
             while (true)
