@@ -83,12 +83,32 @@ namespace InvoicingSystem
                 Console.WriteLine($"An error occurred while saving the invoice: {ex.Message}");
             }
         }
-
-
-
-
-
-
-
+        public static List<Invoice> LoadAllInvoices()
+        {
+            List<Invoice> loadedInvoices = new List<Invoice>();
+            try
+            {
+                string[] invoiceFiles = Directory.GetFiles(Directory.GetCurrentDirectory(), "INV*.json");
+                foreach (var file in invoiceFiles)
+                {
+                    string json = File.ReadAllText(file);
+                    Invoice invoice = JsonSerializer.Deserialize<Invoice>(json);
+                    loadedInvoices.Add(invoice);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while loading invoices: {ex.Message}");
+            }
+            return loadedInvoices;
+        }
     }
+
+
+
+
+
+
+
+}
 }
