@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace InvoicingSystem
@@ -18,14 +19,22 @@ namespace InvoicingSystem
         public decimal TotalAmount => Items.Sum(item => item.Price * item.Quantity);
         public decimal Balance => TotalAmount - PaidAmount;
 
+        private static List<Invoice> _allInvoices = new List<Invoice>();
+
         public Invoice(string CustomerFullName, string PhoneNumber)
         {
             this.CustomerFullName = CustomerFullName;
             this.PhoneNumber = PhoneNumber;
             InvoiceDate = DateTime.Now;
             _lastInvoiceNumber++;
+            _allInvoices.Add(this);
             InvoiceNumber = $"INV{_lastInvoiceNumber:D6}"; // Format invoice number as INV000001, INV000002, etc.
         }
+        public static List<Invoice> GetAllInvoices()
+        {
+            return _allInvoices;
+        }
+
 
 
         public void AddItem(ShopItem item, int quantity = 1)
@@ -55,11 +64,25 @@ namespace InvoicingSystem
                     Items.Add(newItem);
                 }
             }catch(Exception ex) {Console.WriteLine(ex.Message);}
+
+            Save();
+
         }
 
 
 
-
+        public void Save()
+        {
+            try
+            {
+                string json = JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText($"{InvoiceNumber}.json", json);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while saving the invoice: {ex.Message}");
+            }
+        }
 
 
 
