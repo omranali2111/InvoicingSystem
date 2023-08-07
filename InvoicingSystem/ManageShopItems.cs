@@ -18,20 +18,41 @@ namespace InvoicingSystem
         }
         public void SaveInventoryToFile(string filePath)
         {
-            string json = JsonSerializer.Serialize(shopInventory);
-            File.WriteAllText(filePath, json);
+            try
+            {
+                string json = JsonSerializer.Serialize(shopInventory);
+                File.WriteAllText(filePath, json);
+            }catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
-        public void deleteItems()
+        public void deleteItems(ShopItem item)
         {
+            shopInventory.Remove(item);
 
         }
-        public void changeItemsPrice()
+        public void changeItemsPrice(string itemName, decimal newPrice)
         {
+            try
+            {
+                ShopItem itemToChange = shopInventory.FirstOrDefault(item => item.ItemName == itemName);//LINQ extension method that searches the
+                                                                                                        //shopInventory list for the first element
+                                                                                                        //that satisfies a given condition.
+                                                                                                        //using  lambda expression compares the ItemName property of
+                                                                                                       //each ShopItem object with the provided itemName.
 
+                if (itemToChange != null)
+                {
+                    itemToChange.Price = newPrice;
+                    Console.WriteLine($"Price of item '{itemName}' changed to {newPrice:C}");
+                }
+                else
+                {
+                    Console.WriteLine($"Item '{itemName}' not found.");
+                }
+            }catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
-        public void reportAllItems()
+        public List<ShopItem> reportAllItems()
         {
-
+            return shopInventory;
         }
 
 

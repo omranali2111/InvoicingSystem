@@ -8,7 +8,7 @@ namespace InvoicingSystem
 {
     internal class ShopItem
     {
-        public string itemName { get; set; }
+        public string ItemName { get; set; }
         public decimal Price { get; set; }
         
     }

@@ -1,0 +1,15 @@
+C:\Users\ict\Desktop\code-TRA\InvoicingSystem\InvoicingSystem\bin\Debug\net6.0\InvoicingSystem.exe
+C:\Users\ict\Desktop\code-TRA\InvoicingSystem\InvoicingSystem\bin\Debug\net6.0\InvoicingSystem.deps.json
+C:\Users\ict\Desktop\code-TRA\InvoicingSystem\InvoicingSystem\bin\Debug\net6.0\InvoicingSystem.runtimeconfig.json
+C:\Users\ict\Desktop\code-TRA\InvoicingSystem\InvoicingSystem\bin\Debug\net6.0\InvoicingSystem.dll
+C:\Users\ict\Desktop\code-TRA\InvoicingSystem\InvoicingSystem\bin\Debug\net6.0\InvoicingSystem.pdb
+C:\Users\ict\Desktop\code-TRA\InvoicingSystem\InvoicingSystem\obj\Debug\net6.0\InvoicingSystem.csproj.AssemblyReference.cache
+C:\Users\ict\Desktop\code-TRA\InvoicingSystem\InvoicingSystem\obj\Debug\net6.0\InvoicingSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ict\Desktop\code-TRA\InvoicingSystem\InvoicingSystem\obj\Debug\net6.0\InvoicingSystem.AssemblyInfoInputs.cache
+C:\Users\ict\Desktop\code-TRA\InvoicingSystem\InvoicingSystem\obj\Debug\net6.0\InvoicingSystem.AssemblyInfo.cs
+C:\Users\ict\Desktop\code-TRA\InvoicingSystem\InvoicingSystem\obj\Debug\net6.0\InvoicingSystem.csproj.CoreCompileInputs.cache
+C:\Users\ict\Desktop\code-TRA\InvoicingSystem\InvoicingSystem\obj\Debug\net6.0\InvoicingSystem.dll
+C:\Users\ict\Desktop\code-TRA\InvoicingSystem\InvoicingSystem\obj\Debug\net6.0\refint\InvoicingSystem.dll
+C:\Users\ict\Desktop\code-TRA\InvoicingSystem\InvoicingSystem\obj\Debug\net6.0\InvoicingSystem.pdb
+C:\Users\ict\Desktop\code-TRA\InvoicingSystem\InvoicingSystem\obj\Debug\net6.0\InvoicingSystem.genruntimeconfig.cache
+C:\Users\ict\Desktop\code-TRA\InvoicingSystem\InvoicingSystem\obj\Debug\net6.0\ref\InvoicingSystem.dll
