@@ -10,10 +10,12 @@ namespace InvoicingSystem
     internal class ManageShopItems
     {
         private List<ShopItem> shopInventory = new List<ShopItem>();
+        private int nextItemId = 1; // Counter for generating unique IDs
 
         public void addItems(ShopItem item)
         {
             shopInventory.Add(item);
+            item.ItemId = nextItemId++;
 
         }
         public void SaveInventoryToFile(string filePath)
@@ -24,9 +26,20 @@ namespace InvoicingSystem
                 File.WriteAllText(filePath, json);
             }catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
-        public void deleteItems(ShopItem item)
+        public void deleteItems(int itemId)
         {
-            shopInventory.Remove(item);
+            try
+            {
+                ShopItem itemToDelete = shopInventory.Find(item => item.ItemId == itemId);
+                if (itemToDelete != null)
+                {
+                    shopInventory.Remove(itemToDelete);
+                }
+                else
+                {
+                    Console.WriteLine($"Item with ID {itemId} not found.");
+                }
+            }catch (Exception ex) { Console.WriteLine( ex.Message); }
 
         }
         public void changeItemsPrice(string itemName, decimal newPrice)
