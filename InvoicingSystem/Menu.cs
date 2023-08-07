@@ -110,8 +110,23 @@ namespace InvoicingSystem
         {
             Console.WriteLine("Enter the new invoice header: ");
             string newInvoiceHeader = Console.ReadLine();
+
+            Console.WriteLine("Enter the new telephone: ");
+            string telephone = Console.ReadLine();
+
+            Console.WriteLine("Enter the new fax: ");
+            string fax = Console.ReadLine();
+
+            Console.WriteLine("Enter the new email: ");
+            string email = Console.ReadLine();
+
+            Console.WriteLine("Enter the new website: ");
+            string website = Console.ReadLine();
+
             settings.SetInvoiceHeader(newInvoiceHeader);
-            Console.WriteLine("Invoice header updated.");
+            settings.SetContactInformation(telephone, fax, email, website);
+
+            Console.WriteLine("Invoice header and contact information updated.");
         }
 
         private static void ShowManageShopItemsMenu()
