@@ -69,6 +69,24 @@ namespace InvoicingSystem
             return shopInventory;
         }
 
-
+        public static List<ShopItem> LoadAllShopItems()
+        {
+            List<ShopItem> loadedShopItems = new List<ShopItem>();
+            try
+            {
+                string[] shopItemFiles = Directory.GetFiles(Directory.GetCurrentDirectory(), "ShopItem*.json");
+                foreach (var file in shopItemFiles)
+                {
+                    string json = File.ReadAllText(file);
+                    ShopItem shopItem = JsonSerializer.Deserialize<ShopItem>(json);
+                    loadedShopItems.Add(shopItem);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while loading shop items: {ex.Message}");
+            }
+            return loadedShopItems;
+        }
     }
 }
