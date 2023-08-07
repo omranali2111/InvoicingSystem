@@ -12,6 +12,7 @@ namespace InvoicingSystem
         private List<ShopItem> shopInventory = new List<ShopItem>();
         private int nextItemId = 1; // Counter for generating unique IDs
 
+
         public void addItems(ShopItem item)
         {
             shopInventory.Add(item);

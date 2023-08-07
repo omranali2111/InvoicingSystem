@@ -18,11 +18,15 @@ namespace InvoicingSystem
         public decimal TotalAmount => Items.Sum(item => item.Price * item.Quantity);
         public decimal Balance => TotalAmount - PaidAmount;
 
-        public Invoice()
+        public Invoice(string CustomerFullName, string PhoneNumber)
         {
+            this.CustomerFullName = CustomerFullName;
+            this.PhoneNumber = PhoneNumber;
+            InvoiceDate = DateTime.Now;
             _lastInvoiceNumber++;
             InvoiceNumber = $"INV{_lastInvoiceNumber:D6}"; // Format invoice number as INV000001, INV000002, etc.
         }
+
 
         public void AddItem(ShopItem item, int quantity = 1)
         {
