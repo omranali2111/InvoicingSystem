@@ -61,12 +61,13 @@ namespace InvoicingSystem
                 }
             }catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
-        public void SaveInventoryToFile(string filePath)
+        public void SaveInventoryToFile(string fileName)
         {
             try
             {
                 string json = JsonSerializer.Serialize(shopInventory);
-                File.WriteAllText($"{filePath}.json", json);
+                string filePath = $"ShopItem{fileName}.json";
+                File.WriteAllText(filePath, json);
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
