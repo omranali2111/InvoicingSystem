@@ -23,14 +23,7 @@ namespace InvoicingSystem
         {
             return shopInventory.FirstOrDefault(item => item.ItemId == itemId);
         }
-        public void SaveInventoryToFile(string filePath)
-        {
-            try
-            {
-                string json = JsonSerializer.Serialize(shopInventory);
-                File.WriteAllText(filePath, json);
-            }catch (Exception ex) { Console.WriteLine(ex.Message); }
-        }
+      
         public void deleteItems(int itemId)
         {
             try
@@ -67,6 +60,15 @@ namespace InvoicingSystem
                     Console.WriteLine($"Item '{itemName}' not found.");
                 }
             }catch (Exception ex) { Console.WriteLine(ex.Message); }
+        }
+        public void SaveInventoryToFile(string filePath)
+        {
+            try
+            {
+                string json = JsonSerializer.Serialize(shopInventory);
+                File.WriteAllText($"{filePath}.json", json);
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
         public List<ShopItem> reportAllItems()
         {
