@@ -297,6 +297,7 @@ namespace InvoicingSystem
         private static void ReportAllItems()
         {
             List<ShopItem> allItems = shopItemManager.reportAllItems();
+            List<ShopItem> loadedItems = ManageShopItems.LoadAllShopItems();
 
             if (allItems.Count > 0)
             {
@@ -313,6 +314,22 @@ namespace InvoicingSystem
             else
             {
                 Console.WriteLine("No items available.");
+            }
+            if (loadedItems.Count > 0)
+            {
+                Console.WriteLine("Loaded Items:");
+                foreach (var item in loadedItems)
+                {
+                    Console.WriteLine($"Item ID: {item.ItemId}");
+                    Console.WriteLine($"Item Name: {item.ItemName}");
+                    Console.WriteLine($"Price: {item.Price:C}");
+                    Console.WriteLine($"Quantity: {item.Quantity}");
+                    Console.WriteLine();
+                }
+            }
+            else
+            {
+                Console.WriteLine("No loaded items.");
             }
         }
         private static void SaveShopInventory()
