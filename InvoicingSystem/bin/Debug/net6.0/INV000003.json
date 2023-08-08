@@ -1,0 +1,23 @@
+{
+  "InvoiceNumber": "INV000003",
+  "CustomerFullName": "ali",
+  "PhoneNumber": "92139732",
+  "InvoiceDate": "2023-08-08T00:46:14.6113687+04:00",
+  "Items": [
+    {
+      "ItemName": "item1",
+      "Price": 2,
+      "ItemId": 1,
+      "Quantity": 2
+    },
+    {
+      "ItemName": "item2",
+      "Price": 5,
+      "ItemId": 2,
+      "Quantity": 2
+    }
+  ],
+  "PaidAmount": 0,
+  "TotalAmount": 14,
+  "Balance": 14
+}

@@ -196,7 +196,8 @@ namespace InvoicingSystem
                 Console.WriteLine("2. Delete Item");
                 Console.WriteLine("3. Change Item Price");
                 Console.WriteLine("4. Report All Items");
-                Console.WriteLine("5. Go Back");
+                Console.WriteLine("5. Save Shop Inventory");
+                Console.WriteLine("6. Go Back");
                 Console.Write("Select an option: ");
 
                 int choice;
@@ -273,12 +274,17 @@ namespace InvoicingSystem
                             shopItemManager.reportAllItems();
                             break;
                         case 5:
+                            SaveShopInventory();
+                            break;
+                        case 6:
                             return; // Go back to main menu
                         default:
                             Console.WriteLine("Invalid choice. Please try again.");
                             break;
                     }
+
                 }
+
                 else
                 {
                     Console.WriteLine("Invalid input. Please enter a number.");
@@ -287,6 +293,14 @@ namespace InvoicingSystem
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
             }
+        }
+        private static void SaveShopInventory()
+        {
+            Console.Write("Enter the name of the file to save the inventory: ");
+            string filePath = Console.ReadLine();
+
+            shopItemManager.SaveInventoryToFile(filePath);
+            Console.WriteLine("Shop inventory saved.");
         }
     }
 }

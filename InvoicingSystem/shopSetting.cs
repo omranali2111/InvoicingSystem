@@ -27,6 +27,7 @@ namespace InvoicingSystem
             Fax = fax;
             Email = email;
             Website = website;
+            Save();
         }
 
         public void Save()

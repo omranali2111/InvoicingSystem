@@ -121,15 +121,15 @@ namespace InvoicingSystem
             {
                 Console.WriteLine($"  Item ID: {item.ItemId}");
                 Console.WriteLine($"  Item Name: {item.ItemName}");
-                Console.WriteLine($"  Unit Price: {item.Price:RO}");
+                Console.WriteLine($"  Unit Price: {item.Price:C}");
                 Console.WriteLine($"  Quantity: {item.Quantity}");
                 //Console.WriteLine($"  Total Price: {item.Price * item.Quantity:RO}");
                 Console.WriteLine();
             }
 
-            Console.WriteLine($"Total Amount: {TotalAmount:RO}");
-            Console.WriteLine($"Paid Amount: {PaidAmount:RO}");
-            Console.WriteLine($"Balance: {Balance:RO}");
+            Console.WriteLine($"Total Amount: {TotalAmount:C}");
+            Console.WriteLine($"Paid Amount: {PaidAmount:C}");
+            Console.WriteLine($"Balance: {Balance:C}");
         }
     }
 
