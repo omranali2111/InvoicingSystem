@@ -271,7 +271,7 @@ namespace InvoicingSystem
                             }
                             break;
                         case 4:
-                            shopItemManager.reportAllItems();
+                            ReportAllItems();
                             break;
                         case 5:
                             SaveShopInventory();
@@ -292,6 +292,27 @@ namespace InvoicingSystem
 
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
+            }
+        }
+        private static void ReportAllItems()
+        {
+            List<ShopItem> allItems = shopItemManager.reportAllItems();
+
+            if (allItems.Count > 0)
+            {
+                Console.WriteLine("All Items:");
+                foreach (var item in allItems)
+                {
+                    Console.WriteLine($"Item ID: {item.ItemId}");
+                    Console.WriteLine($"Item Name: {item.ItemName}");
+                    Console.WriteLine($"Price: {item.Price:C}");
+                    Console.WriteLine($"Quantity: {item.Quantity}");
+                    Console.WriteLine();
+                }
+            }
+            else
+            {
+                Console.WriteLine("No items available.");
             }
         }
         private static void SaveShopInventory()
