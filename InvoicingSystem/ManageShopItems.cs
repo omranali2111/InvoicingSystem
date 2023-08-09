@@ -10,6 +10,7 @@ namespace InvoicingSystem
     internal class ManageShopItems
     {
         private List<ShopItem> shopInventory = new List<ShopItem>();
+        List<ShopItem> loadedItems = LoadAllShopItems();
         private int nextItemId = 1; // Counter for generating unique IDs
 
 
@@ -21,7 +22,7 @@ namespace InvoicingSystem
         }
         public ShopItem GetItemById(int itemId)
         {
-            return shopInventory.FirstOrDefault(item => item.ItemId == itemId);
+            return shopInventory.Concat(loadedItems).FirstOrDefault(item => item.ItemId == itemId);
         }
       
         public void deleteItems(int itemId)
@@ -63,7 +64,7 @@ namespace InvoicingSystem
         }
         public List<ShopItem> reportAllItems()
         {
-            List<ShopItem> loadedItems = LoadAllShopItems();
+          
             return shopInventory.Concat(loadedItems).ToList();
 
         }

@@ -15,6 +15,22 @@ namespace InvoicingSystem
 
         public int Quantity { get; set; }
 
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            ShopItem otherItem = (ShopItem)obj;
+            return ItemId == otherItem.ItemId;
+        }
+
+        public override int GetHashCode()
+        {
+            return ItemId.GetHashCode();
+        }
+
 
     }
 }

@@ -47,7 +47,7 @@ namespace InvoicingSystem
                 }
 
                 // Check if the item is already added to the invoice
-                var existingItem = Items.FirstOrDefault(i => i.ItemId == item.ItemId);
+                var existingItem = Items.FirstOrDefault(i => i.Equals(item));
                 if (existingItem != null)
                 {
                     existingItem.Quantity += quantity;
@@ -63,11 +63,15 @@ namespace InvoicingSystem
                     };
                     Items.Add(newItem);
                 }
-            }catch(Exception ex) {Console.WriteLine(ex.Message);}
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
             Save();
-
         }
+
 
 
 

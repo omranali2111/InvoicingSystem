@@ -1,1 +1,14 @@
-[{"ItemName":"jjo","Price":12,"ItemId":1,"Quantity":1}]
+[
+  {
+    "ItemName": "juce",
+    "Price": 12,
+    "ItemId": 1,
+    "Quantity": 23
+  },
+  {
+    "ItemName": "apple",
+    "Price": 4,
+    "ItemId": 2,
+    "Quantity": 18
+  }
+]
