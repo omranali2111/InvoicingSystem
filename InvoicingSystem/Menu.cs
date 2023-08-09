@@ -11,6 +11,7 @@ namespace InvoicingSystem
         private static ShopSetting settings = new ShopSetting();
         private static ManageShopItems shopItemManager = new ManageShopItems();
         private static List<Invoice> invoices = new List<Invoice>();
+
         public static void ShowMainMenu()
         {
             while (true)
@@ -297,7 +298,8 @@ namespace InvoicingSystem
         private static void ReportAllItems()
         {
             List<ShopItem> allItems = shopItemManager.reportAllItems();
-            List<ShopItem> loadedItems = ManageShopItems.LoadAllShopItems();
+           
+          
 
             if (allItems.Count > 0)
             {
@@ -315,30 +317,23 @@ namespace InvoicingSystem
             {
                 Console.WriteLine("No items available.");
             }
-            if (loadedItems.Count > 0)
-            {
-                Console.WriteLine("Loaded Items:");
-                foreach (var item in loadedItems)
-                {
-                    Console.WriteLine($"Item ID: {item.ItemId}");
-                    Console.WriteLine($"Item Name: {item.ItemName}");
-                    Console.WriteLine($"Price: {item.Price:C}");
-                    Console.WriteLine($"Quantity: {item.Quantity}");
-                    Console.WriteLine();
-                }
-            }
-            else
-            {
-                Console.WriteLine("No loaded items.");
-            }
+           
         }
         private static void SaveShopInventory()
         {
-            Console.Write("Enter the name of the file to save the inventory: ");
-            string filePath = Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("Save Shop Items");
+            Console.Write("Enter the file name: ");
+            string fileName = Console.ReadLine();
 
-            shopItemManager.SaveInventoryToFile(filePath);
-            Console.WriteLine("Shop inventory saved.");
+           
+
+            ManageShopItems.SaveItemsToFile(shopItemManager.reportAllItems(), fileName);
+
+            Console.WriteLine("Shop items saved successfully.");
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
         }
+
     }
 }

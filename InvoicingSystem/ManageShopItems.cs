@@ -61,20 +61,26 @@ namespace InvoicingSystem
                 }
             }catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
-        public void SaveInventoryToFile(string fileName)
+        public List<ShopItem> reportAllItems()
+        {
+            List<ShopItem> loadedItems = LoadAllShopItems();
+            return shopInventory.Concat(loadedItems).ToList();
+
+        }
+        public static void SaveItemsToFile(List<ShopItem> items, string filePath)
         {
             try
             {
-                string json = JsonSerializer.Serialize(shopInventory);
-                string filePath = $"ShopItem{fileName}.json";
-                File.WriteAllText(filePath, json);
+                string json = JsonSerializer.Serialize(items, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText($"ShopItem{filePath}.Json", json);
+                Console.WriteLine("Items saved successfully.");
             }
-            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while saving items: {ex.Message}");
+            }
         }
-        public List<ShopItem> reportAllItems()
-        {
-            return shopInventory;
-        }
+
 
         public static List<ShopItem> LoadAllShopItems()
         {
@@ -85,8 +91,8 @@ namespace InvoicingSystem
                 foreach (var file in shopItemFiles)
                 {
                     string json = File.ReadAllText(file);
-                    ShopItem shopItem = JsonSerializer.Deserialize<ShopItem>(json);
-                    loadedShopItems.Add(shopItem);
+                    List<ShopItem> itemsInFile = JsonSerializer.Deserialize<List<ShopItem>>(json);
+                    loadedShopItems.AddRange(itemsInFile);
                 }
             }
             catch (Exception ex)
@@ -95,5 +101,6 @@ namespace InvoicingSystem
             }
             return loadedShopItems;
         }
+
     }
 }
