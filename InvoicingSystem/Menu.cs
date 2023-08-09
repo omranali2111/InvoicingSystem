@@ -105,6 +105,17 @@ namespace InvoicingSystem
                 }
             }
 
+            Console.Write("Enter the amount to be paid: ");
+            decimal paidAmount;
+            if (decimal.TryParse(Console.ReadLine(), out paidAmount) && paidAmount >= 0)
+            {
+                newInvoice.PaidAmount = paidAmount;
+            }
+            else
+            {
+                Console.WriteLine("Invalid amount format. Payment amount not set.");
+            }
+
             Console.WriteLine("Invoice created and items added:");
             newInvoice.PrintInvoice();
         }
