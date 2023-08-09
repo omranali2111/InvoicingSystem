@@ -1,0 +1,17 @@
+{
+  "InvoiceNumber": "INV000005",
+  "CustomerFullName": "omar",
+  "PhoneNumber": "12321",
+  "InvoiceDate": "2023-08-09T11:36:43.8869703+04:00",
+  "Items": [
+    {
+      "ItemName": "apple",
+      "Price": 4,
+      "ItemId": 2,
+      "Quantity": 3
+    }
+  ],
+  "PaidAmount": 0,
+  "TotalAmount": 12,
+  "Balance": 12
+}

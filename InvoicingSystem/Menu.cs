@@ -62,8 +62,8 @@ namespace InvoicingSystem
 
             Console.WriteLine("Enter Phone Number: ");
             string phoneNumber = Console.ReadLine();
-
-            Invoice newInvoice = new Invoice(customerName, phoneNumber);
+            ShopSetting shopSettings = ShopSetting.Load();
+            Invoice newInvoice = new Invoice(customerName, phoneNumber, shopSettings);
 
             while (true)
             {
@@ -165,20 +165,22 @@ namespace InvoicingSystem
         {
             ManageShopItems.LoadAllShopItems(); // Load items
             Invoice.LoadAllInvoices();   // Load invoices
+            ShopSetting.Load(); // Load shop settings
             Console.WriteLine("Data loaded.");
         }
         private static void SetShopName()
         {
             Console.WriteLine("Enter the new shop name: ");
             string newShopName = Console.ReadLine();
+            ShopSetting settings = ShopSetting.Load(); // Load shop settings
             settings.ShopName = newShopName;
+            settings.Save(); // Save updated shop settings
             Console.WriteLine("Shop name updated.");
         }
 
         private static void SetInvoiceHeader()
         {
-            Console.WriteLine("Enter the new invoice header: ");
-            string newInvoiceHeader = Console.ReadLine();
+            ShopSetting settings = ShopSetting.Load(); // Load shop settings
 
             Console.WriteLine("Enter the new telephone: ");
             string telephone = Console.ReadLine();
@@ -192,9 +194,7 @@ namespace InvoicingSystem
             Console.WriteLine("Enter the new website: ");
             string website = Console.ReadLine();
 
-            settings.SetInvoiceHeader(newInvoiceHeader);
             settings.SetContactInformation(telephone, fax, email, website);
-
             Console.WriteLine("Invoice header and contact information updated.");
         }
 

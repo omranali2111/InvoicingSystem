@@ -10,6 +10,7 @@ namespace InvoicingSystem
     internal class Invoice
     {
         private static int _lastInvoiceNumber = 0;
+        public ShopSetting ShopSettings { get; set; }
         public string InvoiceNumber { get; }
         public string CustomerFullName { get; set; }
         public string PhoneNumber { get; set; }
@@ -21,7 +22,7 @@ namespace InvoicingSystem
 
         private static List<Invoice> _allInvoices = new List<Invoice>();
 
-        public Invoice(string CustomerFullName, string PhoneNumber)
+        public Invoice(string CustomerFullName, string PhoneNumber, ShopSetting shopSettings)
         {
             this.CustomerFullName = CustomerFullName;
             this.PhoneNumber = PhoneNumber;
@@ -29,6 +30,7 @@ namespace InvoicingSystem
             _lastInvoiceNumber++;
             _allInvoices.Add(this);
             InvoiceNumber = $"INV{_lastInvoiceNumber:D6}"; // Format invoice number as INV000001, INV000002, etc.
+            ShopSettings = shopSettings;
         }
         public static List<Invoice> GetAllInvoices()
         {
@@ -108,9 +110,9 @@ namespace InvoicingSystem
         }
         public void PrintInvoice()
         {
-            ShopSetting shopSetting = new ShopSetting();
+
+            ShopSetting shopSetting = ShopSetting.Load();
             Console.WriteLine($"Shop Name: {shopSetting.ShopName}");
-            Console.WriteLine($"Invoice Header: {shopSetting.InvoiceHeader}");
             Console.WriteLine($"Telephone: {shopSetting.Telephone}");
             Console.WriteLine($"Fax: {shopSetting.Fax}");
             Console.WriteLine($"Email: {shopSetting.Email}");

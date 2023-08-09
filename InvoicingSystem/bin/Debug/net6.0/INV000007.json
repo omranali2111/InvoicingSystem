@@ -1,0 +1,17 @@
+{
+  "InvoiceNumber": "INV000007",
+  "CustomerFullName": "omranali",
+  "PhoneNumber": "121223",
+  "InvoiceDate": "2023-08-09T12:15:05.4265506+04:00",
+  "Items": [
+    {
+      "ItemName": "juce",
+      "Price": 12,
+      "ItemId": 1,
+      "Quantity": 2
+    }
+  ],
+  "PaidAmount": 0,
+  "TotalAmount": 24,
+  "Balance": 24
+}

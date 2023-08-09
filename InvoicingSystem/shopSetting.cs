@@ -10,16 +10,12 @@ namespace InvoicingSystem
     internal class ShopSetting
     {
         public string ShopName { get; set; }
-        public string InvoiceHeader { get; private set; }
         public string Telephone { get; private set; }
         public string Fax { get; private set; }
         public string Email { get; private set; }
         public string Website { get; private set; }
 
-        public void SetInvoiceHeader(string header)
-        {
-            InvoiceHeader = header;
-        }
+        
 
         public void SetContactInformation(string telephone, string fax, string email, string website)
         {
@@ -32,8 +28,11 @@ namespace InvoicingSystem
 
         public void Save()
         {
-            string json = JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText("ShopSettings.json", json);
+            try
+            {
+                string json = JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText("ShopSettings.json", json);
+            }catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
 
         public static ShopSetting Load()
