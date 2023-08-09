@@ -10,10 +10,10 @@ namespace InvoicingSystem
     internal class ShopSetting
     {
         public string ShopName { get; set; }
-        public string Telephone { get; private set; }
-        public string Fax { get; private set; }
-        public string Email { get; private set; }
-        public string Website { get; private set; }
+        public string Telephone { get;  set; }
+        public string Fax { get;  set; }
+        public string Email { get;  set; }
+        public string Website { get; set; }
 
         
 
