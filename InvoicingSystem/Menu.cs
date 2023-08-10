@@ -195,7 +195,7 @@ namespace InvoicingSystem
             string website = Console.ReadLine();
 
             settings.SetContactInformation(telephone, fax, email, website);
-            Console.WriteLine("Invoice header and contact information updated.");
+            Console.WriteLine("Invoice header updated.");
         }
 
         private static void ShowManageShopItemsMenu()

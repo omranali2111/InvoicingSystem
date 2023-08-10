@@ -34,7 +34,8 @@ namespace InvoicingSystem
         }
         public static List<Invoice> GetAllInvoices()
         {
-            return _allInvoices;
+            List<Invoice> loadedInvoices = LoadAllInvoices();
+            return _allInvoices.Concat(loadedInvoices).ToList();
         }
 
 
@@ -137,8 +138,9 @@ namespace InvoicingSystem
             Console.WriteLine($"Paid Amount: {PaidAmount:C}");
             Console.WriteLine($"Balance: {Balance:C}");
         }
-    }
 
+    }
+    
 
 
 }
