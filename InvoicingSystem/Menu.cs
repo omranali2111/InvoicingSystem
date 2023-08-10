@@ -32,34 +32,47 @@ namespace InvoicingSystem
                 int choice;
                 if (int.TryParse(Console.ReadLine(), out choice))
                 {
-                    if (choice >= 1 && choice <= 7) 
+                    if (choice >= 1 && choice <= 7)
                     {
-                        menuOptionCounts[choice - 1]++; 
-                        switch (choice)
+                        if (choice == 7) // Exit option
                         {
-                            case 1:
-                                ShowShopSettingsMenu();
-                                break;
-                            case 2:
-                                ShowManageShopItemsMenu();
-                                break;
-                            case 3:
-                                CreateNewInvoice();
-                                break;
-                            case 4:
-                                PrintAllInvoices();
-                                break;
-                            case 5:
-                                SearchAndPrintInvoice();
-                                break;
-                            case 6:
-                                PrintProgramStatistics();
-                                break;
-                            case 7:
+                            Console.Write("Are you sure you want to exit? (Y/N): ");
+                            string exitConfirmation = Console.ReadLine();
+                            if (exitConfirmation.ToUpper() == "Y")
+                            {
                                 return; // Exit the program
-                            default:
-                                Console.WriteLine("Invalid choice. Please try again.");
-                                break;
+                            }
+
+                        }
+                        else
+                        {
+                            menuOptionCounts[choice - 1]++;
+                            switch (choice)
+                            {
+                                case 1:
+                                    ShowShopSettingsMenu();
+                                    break;
+                                case 2:
+                                    ShowManageShopItemsMenu();
+                                    break;
+                                case 3:
+                                    CreateNewInvoice();
+                                    break;
+                                case 4:
+                                    PrintAllInvoices();
+                                    break;
+                                case 5:
+                                    SearchAndPrintInvoice();
+                                    break;
+                                case 6:
+                                    PrintProgramStatistics();
+                                    break;
+                                case 7:
+                                    return; // Exit the program
+                                default:
+                                    Console.WriteLine("Invalid choice. Please try again.");
+                                    break;
+                            }
                         }
                     }
                     else
