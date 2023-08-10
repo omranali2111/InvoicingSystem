@@ -21,7 +21,8 @@ namespace InvoicingSystem
                 Console.WriteLine("1. Shop Settings");
                 Console.WriteLine("2. Manage Shop Items");
                 Console.WriteLine("3. Create New Invoice");
-                Console.WriteLine("4. Exit");
+                Console.WriteLine("4. Report All Invoice");
+                Console.WriteLine("5. Exit");
                 Console.Write("Select an option: ");
 
                 int choice;
@@ -39,6 +40,9 @@ namespace InvoicingSystem
                             CreateNewInvoice();
                             break;
                         case 4:
+                            PrintAllInvoices();
+                            break;
+                        case 5:
                             return; // Exit the program
                         default:
                             Console.WriteLine("Invalid choice. Please try again.");
@@ -54,6 +58,16 @@ namespace InvoicingSystem
                 Console.ReadKey();
             }
 
+        }
+        public static void PrintAllInvoices()
+        {
+            List<Invoice> allInvoices = Invoice.GetAllInvoices();
+
+            foreach (var invoice in allInvoices)
+            {
+                invoice.PrintInvoice();
+                Console.WriteLine("-------------------------------------");
+            }
         }
         private static void CreateNewInvoice()
         {
