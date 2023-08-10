@@ -44,7 +44,7 @@ namespace InvoicingSystem
                             PrintAllInvoices();
                             break;
                         case 5:
-                            Invoice.SearchAndPrintInvoice();
+                            SearchAndPrintInvoice();
                             break;
                         case 6:
                             return; // Exit the program
@@ -62,6 +62,23 @@ namespace InvoicingSystem
                 Console.ReadKey();
             }
 
+        }
+        private static void SearchAndPrintInvoice()
+        {
+            Console.Write("Enter the last 4 digits of the invoice number: ");
+            string searchQuery = Console.ReadLine();
+
+            Invoice foundInvoice = Invoice.SearchInvoiceByLastDigits(searchQuery);
+
+            if (foundInvoice != null)
+            {
+                Console.WriteLine("Found Invoice:");
+                foundInvoice.PrintInvoice();
+            }
+            else
+            {
+                Console.WriteLine("Invoice not found.");
+            }
         }
         public static void PrintAllInvoices()
         {

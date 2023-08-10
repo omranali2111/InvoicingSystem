@@ -144,25 +144,18 @@ namespace InvoicingSystem
                 Console.WriteLine($"Balance: {Balance:C}");
             
         }
-        public static void SearchAndPrintInvoice()
+        public static Invoice SearchInvoiceByLastDigits(string searchQuery)
         {
-            Console.Write("Enter the last 4 digits of the Invoice Number to search: ");
-            string lastFourDigitsToSearch = Console.ReadLine();
-
-            List<Invoice> loadedInvoices = LoadAllInvoices();
-            Invoice foundInvoice = loadedInvoices.FirstOrDefault(invoice =>
-                invoice.InvoiceNumber.EndsWith(lastFourDigitsToSearch));
-
-            if (foundInvoice != null)
+            foreach (var invoice in _allInvoices)
             {
-                Console.WriteLine("Found Invoice:");
-                foundInvoice.PrintInvoice();
+                if (invoice.InvoiceNumber.EndsWith(searchQuery))
+                {
+                    return invoice;
+                }
             }
-            else
-            {
-                Console.WriteLine($"Invoice with last 4 digits '{lastFourDigitsToSearch}' not found.");
-            }
+            return null;
         }
+
 
     }
 
