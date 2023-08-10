@@ -143,7 +143,8 @@ namespace InvoicingSystem
                 Console.WriteLine("1. Load Data");
                 Console.WriteLine("2. Set Shop Name");
                 Console.WriteLine("3. Set Invoice Header");
-                Console.WriteLine("4. Go Back");
+                Console.WriteLine("4. Report Statistics");
+                Console.WriteLine("5. Go Back");
                 Console.Write("Select an option: ");
 
                 int choice;
@@ -161,6 +162,9 @@ namespace InvoicingSystem
                             SetInvoiceHeader();
                             break;
                         case 4:
+                            settings.ReportStatistics(Invoice.LoadAllInvoices());
+                            break;
+                        case 5:
                             return; // Go back to main menu
                         default:
                             Console.WriteLine("Invalid choice. Please try again.");
