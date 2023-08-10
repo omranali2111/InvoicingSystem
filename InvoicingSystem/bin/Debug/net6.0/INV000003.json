@@ -1,0 +1,24 @@
+{
+  "ShopSettings": {
+    "ShopName": "omranshop",
+    "Telephone": "9978778",
+    "Fax": "qw123",
+    "Email": "alj@hotmail",
+    "Website": "www.oranshop.com"
+  },
+  "InvoiceNumber": "INV000003",
+  "CustomerFullName": "omran",
+  "PhoneNumber": "990909990",
+  "InvoiceDate": "2023-08-10T11:15:04.671503+04:00",
+  "Items": [
+    {
+      "ItemName": "juce",
+      "Price": 12,
+      "ItemId": 1,
+      "Quantity": 4
+    }
+  ],
+  "PaidAmount": 0,
+  "TotalAmount": 48,
+  "Balance": 48
+}

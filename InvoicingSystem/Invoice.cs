@@ -33,11 +33,7 @@ namespace InvoicingSystem
             InvoiceNumber = $"INV{_lastInvoiceNumber:D6}"; // Format invoice number as INV000001, INV000002, etc.
             ShopSettings = shopSettings;
         }
-        public static List<Invoice> GetAllInvoices()
-        {
-            List<Invoice> loadedInvoices = LoadAllInvoices();
-            return loadedInvoices;
-        }
+       
 
 
 
@@ -97,13 +93,19 @@ namespace InvoicingSystem
             try
             {
                 string[] invoiceFiles = Directory.GetFiles(Directory.GetCurrentDirectory(), "INV*.json");
-                
+
                 foreach (var file in invoiceFiles)
                 {
-                    string json = File.ReadAllText(file);
-                    Invoice invoice = JsonSerializer.Deserialize<Invoice>(json);
-                    loadedInvoices.Add(invoice);
-                    
+                    try
+                    {
+                        string json = File.ReadAllText(file);
+                        Invoice invoice = JsonSerializer.Deserialize<Invoice>(json);
+                        loadedInvoices.Add(invoice);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"An error occurred while loading invoice from file '{file}': {ex.Message}");
+                    }
                 }
             }
             catch (Exception ex)
@@ -114,11 +116,14 @@ namespace InvoicingSystem
         }
         public void PrintInvoice()
         {
-            Console.WriteLine($"Shop Name: {ShopSettings.ShopName}");
-            Console.WriteLine($"Telephone: {ShopSettings.Telephone}");
-            Console.WriteLine($"Fax: {ShopSettings.Fax}");
-            Console.WriteLine($"Email: {ShopSettings.Email}");
-            Console.WriteLine($"Website: {ShopSettings.Website}");
+
+            ShopSetting shopSetting = ShopSetting.Load();
+
+            Console.WriteLine($"Shop Name: {shopSetting.ShopName}");
+            Console.WriteLine($"Telephone: {shopSetting.Telephone}");
+            Console.WriteLine($"Fax: {shopSetting.Fax}");
+            Console.WriteLine($"Email: {shopSetting.Email}");
+            Console.WriteLine($"Website: {shopSetting.Website}");
             Console.WriteLine($"Invoice Number: {InvoiceNumber}");
             Console.WriteLine($"Customer Name: {CustomerFullName}");
             Console.WriteLine($"Phone Number: {PhoneNumber}");
@@ -126,18 +131,20 @@ namespace InvoicingSystem
             Console.WriteLine("Items:");
 
             foreach (var item in Items)
-            {
-                Console.WriteLine($"  Item ID: {item.ItemId}");
-                Console.WriteLine($"  Item Name: {item.ItemName}");
-                Console.WriteLine($"  Unit Price: {item.Price:C}");
-                Console.WriteLine($"  Quantity: {item.Quantity}");
-                Console.WriteLine();
-            }
+                {
+                    Console.WriteLine($"  Item ID: {item.ItemId}");
+                    Console.WriteLine($"  Item Name: {item.ItemName}");
+                    Console.WriteLine($"  Unit Price: {item.Price:C}");
+                    Console.WriteLine($"  Quantity: {item.Quantity}");
+                    Console.WriteLine();
+                }
 
-            Console.WriteLine($"Total Amount: {TotalAmount:C}");
-            Console.WriteLine($"Paid Amount: {PaidAmount:C}");
-            Console.WriteLine($"Balance: {Balance:C}");
+                Console.WriteLine($"Total Amount: {TotalAmount:C}");
+                Console.WriteLine($"Paid Amount: {PaidAmount:C}");
+                Console.WriteLine($"Balance: {Balance:C}");
+            
         }
+
        
 
     }

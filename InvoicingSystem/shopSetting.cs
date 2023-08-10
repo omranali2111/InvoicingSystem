@@ -48,6 +48,24 @@ namespace InvoicingSystem
                 return new ShopSetting();
             }
         }
+
+        public void ReportStatistics(List<Invoice> invoices)
+        {
+            int totalItems = 0;
+            int totalInvoices = invoices.Count;
+            decimal totalSale = 0;
+
+            foreach (var invoice in invoices)
+            {
+                totalItems += invoice.Items.Sum(item => item.Quantity);
+                totalSale += invoice.TotalAmount;
+            }
+
+            Console.WriteLine("Shop Statistics:");
+            Console.WriteLine($"Number of Items: {totalItems}");
+            Console.WriteLine($"Number of Invoices: {totalInvoices}");
+            Console.WriteLine($"Total Sale: {totalSale:C}");
+        }
     }
 
 

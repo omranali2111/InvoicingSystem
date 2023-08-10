@@ -61,9 +61,8 @@ namespace InvoicingSystem
         }
         public static void PrintAllInvoices()
         {
-            List<Invoice> allInvoices = Invoice.GetAllInvoices();
-
-            foreach (var invoice in allInvoices)
+            List<Invoice> loadedInvoices = Invoice.LoadAllInvoices();
+            foreach (var invoice in loadedInvoices)
             {
                 Console.WriteLine("Printing Invoice:");
                 invoice.PrintInvoice();
