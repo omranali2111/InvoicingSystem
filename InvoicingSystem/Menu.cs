@@ -65,10 +65,12 @@ namespace InvoicingSystem
 
             foreach (var invoice in allInvoices)
             {
+                Console.WriteLine("Printing Invoice:");
                 invoice.PrintInvoice();
                 Console.WriteLine("-------------------------------------");
             }
         }
+
         private static void CreateNewInvoice()
         {
             Console.WriteLine("Enter Customer Full Name: ");

@@ -22,6 +22,7 @@ namespace InvoicingSystem
 
         private static List<Invoice> _allInvoices = new List<Invoice>();
 
+
         public Invoice(string CustomerFullName, string PhoneNumber, ShopSetting shopSettings)
         {
             this.CustomerFullName = CustomerFullName;
@@ -35,7 +36,7 @@ namespace InvoicingSystem
         public static List<Invoice> GetAllInvoices()
         {
             List<Invoice> loadedInvoices = LoadAllInvoices();
-            return _allInvoices.Concat(loadedInvoices).ToList();
+            return loadedInvoices;
         }
 
 
@@ -96,11 +97,13 @@ namespace InvoicingSystem
             try
             {
                 string[] invoiceFiles = Directory.GetFiles(Directory.GetCurrentDirectory(), "INV*.json");
+                
                 foreach (var file in invoiceFiles)
                 {
                     string json = File.ReadAllText(file);
                     Invoice invoice = JsonSerializer.Deserialize<Invoice>(json);
                     loadedInvoices.Add(invoice);
+                    
                 }
             }
             catch (Exception ex)
@@ -111,13 +114,11 @@ namespace InvoicingSystem
         }
         public void PrintInvoice()
         {
-
-            ShopSetting shopSetting = ShopSetting.Load();
-            Console.WriteLine($"Shop Name: {shopSetting.ShopName}");
-            Console.WriteLine($"Telephone: {shopSetting.Telephone}");
-            Console.WriteLine($"Fax: {shopSetting.Fax}");
-            Console.WriteLine($"Email: {shopSetting.Email}");
-            Console.WriteLine($"Website: {shopSetting.Website}");
+            Console.WriteLine($"Shop Name: {ShopSettings.ShopName}");
+            Console.WriteLine($"Telephone: {ShopSettings.Telephone}");
+            Console.WriteLine($"Fax: {ShopSettings.Fax}");
+            Console.WriteLine($"Email: {ShopSettings.Email}");
+            Console.WriteLine($"Website: {ShopSettings.Website}");
             Console.WriteLine($"Invoice Number: {InvoiceNumber}");
             Console.WriteLine($"Customer Name: {CustomerFullName}");
             Console.WriteLine($"Phone Number: {PhoneNumber}");
@@ -130,7 +131,6 @@ namespace InvoicingSystem
                 Console.WriteLine($"  Item Name: {item.ItemName}");
                 Console.WriteLine($"  Unit Price: {item.Price:C}");
                 Console.WriteLine($"  Quantity: {item.Quantity}");
-                //Console.WriteLine($"  Total Price: {item.Price * item.Quantity:RO}");
                 Console.WriteLine();
             }
 
@@ -138,9 +138,10 @@ namespace InvoicingSystem
             Console.WriteLine($"Paid Amount: {PaidAmount:C}");
             Console.WriteLine($"Balance: {Balance:C}");
         }
+       
 
     }
-    
+
 
 
 }
