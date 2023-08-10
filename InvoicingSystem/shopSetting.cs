@@ -66,6 +66,7 @@ namespace InvoicingSystem
             Console.WriteLine($"Number of Invoices: {totalInvoices}");
             Console.WriteLine($"Total Sale: {totalSale:C}");
         }
+       
     }
 
 

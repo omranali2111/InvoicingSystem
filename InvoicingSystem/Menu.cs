@@ -11,6 +11,8 @@ namespace InvoicingSystem
         private static ShopSetting settings = new ShopSetting();
         private static ManageShopItems shopItemManager = new ManageShopItems();
         private static List<Invoice> invoices = new List<Invoice>();
+        private static int[] menuOptionCounts = new int[7];
+
 
         public static void ShowMainMenu()
         {
@@ -22,35 +24,47 @@ namespace InvoicingSystem
                 Console.WriteLine("2. Manage Shop Items");
                 Console.WriteLine("3. Create New Invoice");
                 Console.WriteLine("4. Report All Invoice");
-                Console.WriteLine("5. Search and Print Invoice"); 
-                Console.WriteLine("6. Exit");
+                Console.WriteLine("5. Search and Print Invoice");
+                Console.WriteLine("6. Program Statistics");
+                Console.WriteLine("7. Exit");
                 Console.Write("Select an option: ");
 
                 int choice;
                 if (int.TryParse(Console.ReadLine(), out choice))
                 {
-                    switch (choice)
+                    if (choice >= 1 && choice <= 7) 
                     {
-                        case 1:
-                            ShowShopSettingsMenu();
-                            break;
-                        case 2:
-                            ShowManageShopItemsMenu();
-                            break;
-                        case 3:
-                            CreateNewInvoice();
-                            break;
-                        case 4:
-                            PrintAllInvoices();
-                            break;
-                        case 5:
-                            SearchAndPrintInvoice();
-                            break;
-                        case 6:
-                            return; // Exit the program
-                        default:
-                            Console.WriteLine("Invalid choice. Please try again.");
-                            break;
+                        menuOptionCounts[choice - 1]++; 
+                        switch (choice)
+                        {
+                            case 1:
+                                ShowShopSettingsMenu();
+                                break;
+                            case 2:
+                                ShowManageShopItemsMenu();
+                                break;
+                            case 3:
+                                CreateNewInvoice();
+                                break;
+                            case 4:
+                                PrintAllInvoices();
+                                break;
+                            case 5:
+                                SearchAndPrintInvoice();
+                                break;
+                            case 6:
+                                PrintProgramStatistics();
+                                break;
+                            case 7:
+                                return; // Exit the program
+                            default:
+                                Console.WriteLine("Invalid choice. Please try again.");
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid choice. Please try again.");
                     }
                 }
                 else
@@ -63,6 +77,18 @@ namespace InvoicingSystem
             }
 
         }
+        private static void PrintProgramStatistics()
+        {
+            Console.Clear();
+            Console.WriteLine("Program Statistics");
+            string[] menuOptions = { "Shop Settings", "Manage Shop Items", "Create New Invoice", "Report All Invoices", "Search and Print Invoice", "Program Statistics", "Exit" };
+
+            for (int i = 0; i < menuOptions.Length; i++)
+            {
+                Console.WriteLine($"{menuOptions[i]}: {menuOptionCounts[i]} selections");
+            }
+        }
+
         private static void SearchAndPrintInvoice()
         {
             Console.Write("Enter the last 4 digits of the invoice number: ");
